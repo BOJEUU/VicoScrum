@@ -1,13 +1,171 @@
-.help{
-    color: red;
+@font-face {
+    font-family: "Komika Axis";
+    src: url("../font/KOMIKAX_.ttf");
 }
-.bite{
-    height: 12rem;
-    
+
+body {
+    min-height: 100vh;
+    font-family: "Komika Axis";
 }
-.caca{
+
+.row {
+ margin: 0;
+}
+
+.h-t-70 {
+    height: 70%;
+}
+
+.c-red-text-color {
+    color: rgba(183, 19, 38, 1);
+}
+
+.c-green-text-color {
+    color: rgba(0, 141, 62, 1);
+}
+
+.c-red-color {
+    background-color: rgba(183, 19, 38, 1);
+}
+
+.c-green-color {
+    background-color: rgba(0, 141, 62, 1);
+}
+
+.c-light-color {
+    background-color: rgba(234, 234, 234, 1);
+}
+
+.c-card-img {
+    height: 50%;
     width: 100%;
     object-fit: cover;
-    height: 100%;
-        
+}
+.c-card {
+    height: 30rem;
+}
+.c-card-btn {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+.row-carousel {
+    height: 80vh;
+}
+
+.card .card-body .card-text {
+    font-size: .8rem;
+}
+
+.view img {
+    object-fit: cover;
+}
+
+/* .c-h-100 {
+    min-height: 100vh;
+} */
+
+.c-card-price {
+    color: green !important;
+}
+
+.c-del {
+    text-decoration: line-through;
+    font-size: .65rem;
+    color: #747373;
+}
+
+#cartRow {
+    display: none;
+}
+.cartLogo {
+    width: 4rem;
+}
+.cartLogoC {
+    width: 3rem;
+}
+
+.skin-light .number-input.number-input {
+    border: 1px solid #ced4da;
+    width: 8.6rem;
+    border-radius: .25rem;
+}
+
+.skin-light .number-input.number-input input[type=number] {
+    max-width: 3rem;
+    padding: .5rem;
+    border: 1px solid #ced4da;
+    border-width: 0 1px;
+    font-size: 1rem;
+    height: 2rem;
+    color: #495057;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.c-input {
+    text-align: center;
+    width: 4rem;
+}
+
+.c-alert {
+    color: #fff !important;
+}
+
+.c-alert:hover {
+    text-decoration: none !important;
+    color: #ffc107 !important;
+    /*color alert bootstrap*/
+    transition: .3s !important;
+}
+
+.bg-footer{
+    background-color: grey;
+}
+
+#footer p{
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+.modalPriceFontSize{
+    font-size: 200%;
+}
+
+.alertStyle{
+    position: fixed;
+    top: 10%;
+    right: 1rem;
+    min-width: 250px;
+    z-index: 99;
+}
+
+@media screen and (min-width: 992px) {
+    .navbar-brand {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+    .navbar-nav li {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .alertStyle{
+       position: sticky;
+        top: 10%;
+        left: 18%;
+        min-width: 250px;
+        z-index: 99;
+    }
 }
