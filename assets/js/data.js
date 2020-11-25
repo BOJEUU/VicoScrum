@@ -219,7 +219,7 @@ navBtn.forEach(e => {
     allArray["navHarry"][5]["cardImgAlt"] = "Lanterne de Rubeus Hagrid";
     allArray["navHarry"][5]["cardTitle"] = "Lanterne de Rubeus Hagrid";
     allArray["navHarry"][5]["cardPrice"] = "74";
-    allArray["navHarry"][5]["cardText"] = "Rubeus Hagrid ne se sépare jamais de sa lanterne pour éclairer les moindres recoins des lieux qu’il explore et surveille.";
+    allArray["navHarry"][5]["cardText"] = "Rubeus Hagrid ne se sépare jamais de sa lanterne.";
     allArray["navHarry"][5]["cardTextExt"] = "Cette réplique à taille réelle de la lanterne de Rubeus Hagrid est faite en résine et en lucite. Elle mesure 32 cm de hauteur.";
 
     allArray["navHarry"][6] = []
@@ -227,16 +227,16 @@ navBtn.forEach(e => {
     allArray["navHarry"][6]["cardImgAlt"] = "Réplique du balai l'Eclair de feu";
     allArray["navHarry"][6]["cardTitle"] = "Réplique du balai l'Eclair de feu";
     allArray["navHarry"][6]["cardPrice"] = "328";
-    allArray["navHarry"][6]["cardText"] = "Permettant d’atteindre 240 km/h en seulement dix secondes, l'Éclair de Feu est le balai le plus rapide du monde.";
-    allArray["navHarry"][6]["cardTextExt"] = "Livrée avec son support mural et de taille réelle, cette véritable réplique mesure 1m47. Le balai est composé de deux parties à emboîter, son manche est en bois reconstitué, les cale-pieds sont en métal et les brindilles en plastique.";
+    allArray["navHarry"][6]["cardText"] = "L'Éclair de Feu est le balai le plus rapide du monde.";
+    allArray["navHarry"][6]["cardTextExt"] = "Livrée avec son support mural et de taille réelle, cette véritable réplique mesure 1m47 et Permet d’atteindre 240 km/h en seulement dix secondes. Le balai est composé de deux parties à emboîter, son manche est en bois reconstitué, les cale-pieds sont en métal et les brindilles en plastique.";
 
     allArray["navHarry"][7] = []
     allArray["navHarry"][7]["cardImgSrc"] = "assets/img/items/harry-potter/Boule-de-cristal-de-divination.jpg";
     allArray["navHarry"][7]["cardImgAlt"] = "Boule de cristal de divination";
     allArray["navHarry"][7]["cardTitle"] = "Boule de cristal de divination";
     allArray["navHarry"][7]["cardPrice"] = "62";
-    allArray["navHarry"][7]["cardText"] = "Cette boule de cristal est utilisée pendant les cours de divination de Mme Trelawney pour découvrir l'avenir.";
-    allArray["navHarry"][7]["cardTextExt"] = "Elle est en verre, soutenue par trois éléphants posés sur un socle. La base de l'objet est en porcelaine et la boule de cristal, en verre, mesure 7 cm de diamètre. L'ensemble fait 12,5 cm de haut.";
+    allArray["navHarry"][7]["cardText"] = "Utilisée pendant les cours de divination de Mme Trelawney.";
+    allArray["navHarry"][7]["cardTextExt"] = "Cette boule de cristal est en verre, soutenue par trois éléphants posés sur un socle. La base de l'objet est en porcelaine et la boule de cristal, en verre, mesure 7 cm de diamètre. L'ensemble fait 12,5 cm de haut.";
 
     allArray["navHarry"][8] = []
     allArray["navHarry"][8]["cardImgSrc"] = "assets/img/items/harry-potter/Baguettes-des-Champions.jpg";

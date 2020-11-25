@@ -1,5 +1,3 @@
-// let navBtn = document.querySelectorAll("#mainNav a")
-
 let parentRow = document.getElementById("parentRow");
 
 let carousel = document.getElementById("carouselID");
@@ -20,11 +18,13 @@ let priceOnly = document.getElementById("priceOnly");
 let priceShipping = document.getElementById("priceShipping");
 let priceWithShip = document.getElementById("priceWithShip");
 let priceTaxes = document.getElementById("priceTaxes");
+let priceTaxesBis = document.getElementById("priceTaxesBis");
 let priceTotal = document.getElementById("priceTotal");
 let quantTop = document.getElementById("quantTop");
-
 let shopCart = document.getElementById("shopCart");
 let cartRow = document.getElementById("cartRow");
+let cartDelivery = document.getElementById("cartDelivery");
+
 // Items Modal
 let mod = document.getElementById("exampleModalCenter");
 let modTitle = document.getElementById("modTitle");
@@ -46,65 +46,62 @@ isGenArray["isnavStarAlreadyGen"] = false;
 // create element in the cart
 let cartItemsParent = document.getElementById("cartItemsParent");
 
-// // Generating Home array
-// if (!checkGen(navBtn[0].id)) {
-//     let numberCardToShowAtStart = 20;
+// Generating Home array
+if (!checkGen(navBtn[0].id)) {
+    let numberCardToShowAtStart = 50;
 
-//     while (allArray[navBtn[0].id].length != numberCardToShowAtStart) {
-//         let randNav = Math.floor(Math.random() * (navBtn.length - 1)) + 1;
-//         let randIndex = Math.floor(Math.random() * (allArray[navBtn[randNav].id].length - 1)) + 1;
+    while (allArray[navBtn[0].id].length != numberCardToShowAtStart) {
+        let randNav = Math.floor(Math.random() * (navBtn.length - 1)) + 1;
+        let randIndex = Math.floor(Math.random() * (allArray[navBtn[randNav].id].length - 1)) + 1;
 
-//         if (typeof allArray[navBtn[randNav].id][randIndex] !== "undefined") {
-//             if (allArray[navBtn[0].id].length == 0) {
-//                 allArray[navBtn[0].id].push(allArray[navBtn[randNav].id][randIndex]);
-//             } else {
-//                 let sameCount = 0;
+        if (typeof allArray[navBtn[randNav].id][randIndex] !== "undefined") {
+            if (allArray[navBtn[0].id].length == 0) {
+                allArray[navBtn[0].id].push(allArray[navBtn[randNav].id][randIndex]);
+            } else {
+                let sameCount = 0;
 
-//                 for (let i = 0; i < allArray[navBtn[0].id].length; i++) {
-//                     let tempFirst = allArray[navBtn[0].id][i]["cardTitle"];
-//                     tempFirst = tempFirst.split(" ").join("");
+                for (let i = 0; i < allArray[navBtn[0].id].length; i++) {
+                    let tempFirst = allArray[navBtn[0].id][i]["cardTitle"];
+                    tempFirst = tempFirst.split(" ").join("");
 
-//                     let tempSecond = allArray[navBtn[randNav].id][randIndex]["cardTitle"];
-//                     tempSecond = tempSecond.split(" ").join("");
+                    let tempSecond = allArray[navBtn[randNav].id][randIndex]["cardTitle"];
+                    tempSecond = tempSecond.split(" ").join("");
 
-//                     if (tempFirst === tempSecond) {
-//                         sameCount++;
-//                     }
-//                 }
+                    if (tempFirst === tempSecond) {
+                        sameCount++;
+                    }
+                }
 
-//                 if (sameCount == 0) {
-//                     allArray[navBtn[0].id].push(allArray[navBtn[randNav].id][randIndex]);
-//                 } else {
-//                     sameCount = 0;
-//                 }
-//             }
-//         }
-//     }
+                if (sameCount == 0) {
+                    allArray[navBtn[0].id].push(allArray[navBtn[randNav].id][randIndex]);
+                } else {
+                    sameCount = 0;
+                }
+            }
+        }
+    }
 
-//     if (allArray[navBtn[0].id].length == numberCardToShowAtStart) {
-//         cardGenerator(allArray[navBtn[0].id], navBtn[0]);
+    if (allArray[navBtn[0].id].length == numberCardToShowAtStart) {
+        cardGenerator(allArray[navBtn[0].id], navBtn[0]);
 
-//         if (lastClickId != null) {
-//             console.log("last clicked " + lastClickId)
-//             hideAndShow(allArray[lastClickId], allArray[navBtn[0].id], navBtn[0]);
-//         }
+        lastClickId = navBtn[0].id.toString();
 
-//         lastClickId = navBtn[0].id.toString();
+        addEventOnVisible(navBtn[0]);
+    }
 
-//         addEventOnVisible(navBtn[0]);
-//     }
-
-// }
+}
 
 navBtn.forEach(e => {
     e.addEventListener("click", () => {
-        if (!checkGen(e.id)) {
+        console.log("J'ai click sur " + e.id + ", et le checkgen = " + checkGen(e.id) + ", j'etais sur " + lastClickId);
 
-            cardGenerator(allArray[e.id], e);
+        if (!checkGen(e.id)) {
 
             if (lastClickId != null) {
                 hideAndShow(allArray[lastClickId], allArray[e.id], e);
             }
+
+            cardGenerator(allArray[e.id], e);
 
             lastClickId = e.id.toString();
 
@@ -154,7 +151,7 @@ function cardGenerator(array, e) {
         cardPrice.className = "card-text m-0";
         let cP = parseFloat(array[i].cardPrice);
         let noPromo = cP + ((20 * cP) / 100);
-        cardPrice.innerHTML = `Prix : <span class="c-card-price">${cP.toFixed(2)}€ </span><span class="c-del">${noPromo.toFixed(2)}€</span>`;
+        cardPrice.innerHTML = `Prix : <span class="c-card-price">${cP.toFixed(2)}€ </span><span class="c-del">${noPromo.toFixed(2)}€</span> (TTC)`;
         cardBody.appendChild(cardPrice);
         let cardBtn = document.createElement("a");
         cardBtn.className = "btn c-red-color text-white w-100 c-card-btn";
@@ -186,6 +183,7 @@ function switchBoolGen(e) {
 
 // Hide the last clicked Div ID and show the actual one
 function hideAndShow(last, actual, e) {
+
     hideLastClicked();
 
     if (checkGen(e.id)) {
@@ -195,6 +193,20 @@ function hideAndShow(last, actual, e) {
             if (window.getComputedStyle(divToShow, null).display == "none") {
                 divToShow.style.display = "block";
             }
+        }
+    }
+}
+
+function hideLastClicked() {
+    if (lastClickId == "shopCart") {
+        parentRow.style.display = "flex";
+        carousel.style.display = "block";
+        cartRow.style.display = "none";
+    } else {
+        for (let i = 0; i < allArray[lastClickId].length; i++) {
+            let divToHide = document.getElementById(allArray[lastClickId][i].id);
+            console.log(`trying to hide ${divToHide.style.display}`)
+            divToHide.style.display = "none";
         }
     }
 }
@@ -244,22 +256,6 @@ shopCart.addEventListener("click", () => {
     lastClickId = shopCart.id;
 });
 
-function hideLastClicked() {
-    if (lastClickId == "shopCart") {
-        parentRow.style.display = "flex";
-        carousel.style.display = "block";
-        cartRow.style.display = "none";
-    }
-
-    else {
-        for (let i = 0; i < allArray[lastClickId].length; i++) {
-            let divToHide = document.getElementById(allArray[lastClickId][i].id);
-            console.log(`trying to hide ${divToHide.style.display}`)
-            divToHide.style.display = "none";
-        }
-    }
-}
-
 function cartUpdate(e) {
     if (e.id in cartArray == false) {
         cartArray.push(e.id);
@@ -270,15 +266,15 @@ function cartUpdate(e) {
         cartItemsGenerator(e);
 
         if (priceOnly.innerHTML.charAt(priceOnly.innerHTML.length - 1) == "€") {
-            let a = parseFloat(e.cardPrice);
+            let aa = parseFloat(e.cardPrice).toFixed(2);
+            let fa = aa * 27 / 100;
+            let a = aa - fa ;
             let b = parseFloat(priceOnly.innerHTML.slice(0, -1));
             let c = b + a;
-
             priceOnly.innerHTML = `${c.toFixed(2)}€`;
             console.log("price Updated " + priceOnly.innerHTML);
         }
-    } 
-    else {
+    } else {
         cartArray[e.id]["quantity"] += 1;
         totalQuantity++;
 
@@ -308,23 +304,9 @@ function cartUpdate(e) {
 
     shippingCost();
 
-    let f;
-    if (priceWithShip.innerHTML.charAt(priceWithShip.innerHTML.length - 1) == "€") {
-        f = parseFloat(priceOnly.innerHTML.slice(0, -1)) + parseFloat(priceShipping.innerHTML.slice(0, -1));
-        priceWithShip.innerHTML = `${f.toFixed(2)}€`
-    }
+    priceTaxesCalcul(e);
 
-    let g;
-    if (priceTaxes.innerHTML.charAt(priceTaxes.innerHTML.length - 1) == "€") {
-        g = f * 1.2;
-        let h = g - f;
-        priceTaxes.innerHTML = `${h.toFixed(2)}€`
-    }
-
-    if (priceTotal.innerHTML.charAt(priceTotal.innerHTML.length - 1) == "€") {
-        let j = priceWithShip + priceTaxes;
-        priceTotal.innerHTML = `${g.toFixed(2)}€`
-    }
+    priceWithShipCalcul();
 
     quantityUpdate();
 }
@@ -503,34 +485,29 @@ function minusFuntion(e) {
         quant.value = cartArray[e.id].quantity;
 
         if (priceOnly.innerHTML.charAt(priceOnly.innerHTML.length - 1) == "€") {
-            let a = parseFloat(e.cardPrice);
+            let aa = parseFloat(e.cardPrice).toFixed(2);
+            let fa = aa * 27 / 100;
+            let a = aa - fa ;
             let b = parseFloat(priceOnly.innerHTML.slice(0, -1));
             let c = b - a;
             priceOnly.innerHTML = `${c.toFixed(2)}€`;
 
             let priceTotalByItems = document.getElementById(`price-${e.id}`);
-            let d = a * quant.value;
+            let d = aa * quant.value;
             priceTotalByItems.innerHTML = `${d.toFixed(2)}€`;
         }
 
         shippingCost();
 
-        let f;
+        priceTaxesCalcul(e);
+
+        
         if (priceWithShip.innerHTML.charAt(priceWithShip.innerHTML.length - 1) == "€") {
-            f = parseFloat(priceOnly.innerHTML.slice(0, -1)) - parseFloat(priceShipping.innerHTML.slice(0, -1));
+            let f = parseFloat(priceWithShip.innerHTML.slice(0, -1)) - parseFloat(e.cardPrice).toFixed(2);
             priceWithShip.innerHTML = `${f.toFixed(2)}€`;
         }
 
-        let g;
-        if (priceTaxes.innerHTML.charAt(priceTaxes.innerHTML.length - 1) == "€") {
-            g = f * 1.2;
-            let h = g - f;
-            priceTaxes.innerHTML = `${h.toFixed(2)}€`;
-        }
-
-        if (priceTotal.innerHTML.charAt(priceTotal.innerHTML.length - 1) == "€") {
-            priceTotal.innerHTML = `${g.toFixed(2)}€`;
-        }
+        priceTotalCalcul();
 
         quantityUpdate();
     }
@@ -547,34 +524,22 @@ function plusFunction(e) {
     quant.value = cartArray[e.id].quantity;
 
     if (priceOnly.innerHTML.charAt(priceOnly.innerHTML.length - 1) == "€") {
-        let a = parseFloat(e.cardPrice);
+        let aa = parseFloat(e.cardPrice).toFixed(2);
+        let fa = aa * 27 / 100;
+        let a = aa - fa ;
         let b = parseFloat(priceOnly.innerHTML.slice(0, -1));
         let c = b + a;
         priceOnly.innerHTML = `${c.toFixed(2)}€`;
         let priceTotalByItems = document.getElementById(`price-${e.id}`);
-        let d = a * quant.value;
+        let d = aa * quant.value;
         priceTotalByItems.innerHTML = `${d.toFixed(2)}€`;
     }
 
     shippingCost();
 
-    let f;
-    if (priceWithShip.innerHTML.charAt(priceWithShip.innerHTML.length - 1) == "€") {
-        f = parseFloat(priceOnly.innerHTML.slice(0, -1)) + parseFloat(priceShipping.innerHTML.slice(0, -1));
-        priceWithShip.innerHTML = `${f.toFixed(2)}€`;
-    }
+    priceTaxesCalcul(e);
 
-    let g;
-    if (priceTaxes.innerHTML.charAt(priceTaxes.innerHTML.length - 1) == "€") {
-        g = f * 1.2;
-        let h = g - f;
-        priceTaxes.innerHTML = `${h.toFixed(2)}€`;
-    }
-
-    if (priceTotal.innerHTML.charAt(priceTotal.innerHTML.length - 1) == "€") {
-        let j = priceWithShip + priceTaxes;
-        priceTotal.innerHTML = `${g.toFixed(2)}€`;
-    }
+    priceWithShipCalcul();
 
     quantityUpdate();
 }
@@ -582,38 +547,69 @@ function plusFunction(e) {
 function shippingCost() {
     if (totalQuantity == 0) {
         priceShipping.innerHTML = `0€`;
-    }
-    else if (totalQuantity >= 1 && totalQuantity < 3) {
+    } else if (totalQuantity >= 1 && totalQuantity < 3) {
         shippingRate = 2.11;
         let tempShip = shippingRate * 3;
         priceShipping.innerHTML = `${tempShip.toFixed(2)}€`;
-    }
-    else if (totalQuantity >= 3 && totalQuantity < 6) {
+    } else if (totalQuantity >= 3 && totalQuantity < 6) {
         shippingRate = 1.98;
         let tempShip = shippingRate * 6;
         priceShipping.innerHTML = `${tempShip.toFixed(2)}€`;
-    }
-    else if (totalQuantity >= 6 && totalQuantity < 15) {
+    } else if (totalQuantity >= 6 && totalQuantity < 15) {
         shippingRate = 1.86;
         let tempShip = shippingRate * 15;
         priceShipping.innerHTML = `${tempShip.toFixed(2)}€`;
-    }
-    else {
+    } else {
         shippingRate = 1.78;
         let tempShip = shippingRate * totalQuantity;
         priceShipping.innerHTML = `${tempShip.toFixed(2)}€`;
     }
 }
 
+function priceTaxesCalcul(e) { 
+    if (priceTaxes.innerHTML.charAt(priceTaxes.innerHTML.length - 1) == "€") {
+        let aa = parseFloat(e.cardPrice).toFixed(2);
+        let fa = (aa * 20 / 100) * cartArray[e.id]["quantity"];
+
+        priceTaxes.innerHTML = `${fa.toFixed(2)}€`;
+    }
+
+    if (priceTaxesBis.innerHTML.charAt(priceTaxesBis.innerHTML.length - 1) == "€") {
+        let aa = parseFloat(e.cardPrice).toFixed(2);
+        let fa = (aa * 7 / 100) * cartArray[e.id]["quantity"];
+
+        priceTaxesBis.innerHTML = `${fa.toFixed(2)}€`;
+    }
+}
+
+function priceWithShipCalcul() {
+    if (priceWithShip.innerHTML.charAt(priceWithShip.innerHTML.length - 1) == "€") {
+        let p1 = parseFloat(priceTaxes.innerHTML.slice(0, -1));
+        let p2 = parseFloat(priceTaxesBis.innerHTML.slice(0, -1));
+        let f = parseFloat(priceOnly.innerHTML.slice(0, -1)) + (p1 + p2);;
+        priceWithShip.innerHTML = `${f.toFixed(2)}€`;
+    }
+
+    priceTotalCalcul();
+}
+
+function priceTotalCalcul() {
+    if (priceTotal.innerHTML.charAt(priceTotal.innerHTML.length - 1) == "€") {
+        let f = parseFloat(priceWithShip.innerHTML.slice(0, -1)) + parseFloat(priceShipping.innerHTML.slice(0, -1));
+        priceTotal.innerHTML = `${f.toFixed(2)}€`;
+    }
+}
+
 function quantityUpdate() {
     if (totalQuantity == 0) {
         quantTop.innerHTML = `vide`;
-    }
-    else if (totalQuantity == 1) {
+        cartDelivery.style.display = "none";
+    } else if (totalQuantity == 1) {
         quantTop.innerHTML = `${totalQuantity} objet`;
-    }
-    else {
+        cartDelivery.style.display = "block";
+    } else {
         quantTop.innerHTML = `${totalQuantity} objets`;
+        cartDelivery.style.display = "block";
     }
 }
 
@@ -646,14 +642,16 @@ function resetPriceQuantity(e) {
     quant = document.getElementById(`cartQuantity-${e.id}`);
 
     if (priceOnly.innerHTML.charAt(priceOnly.innerHTML.length - 1) == "€") {
-        let a = parseFloat(e.cardPrice) * cartArray[e.id]["quantity"];
+        let aa = parseFloat(e.cardPrice).toFixed(2);
+        let fa = aa * 27 / 100;
+        let a = aa - fa ;
         let b = parseFloat(priceOnly.innerHTML.slice(0, -1));
-        let c = b - a;
-        priceOnly.innerHTML = `${c.toFixed(2)}€`;
+        let c = a * cartArray[e.id]["quantity"];
+        let cc = b - c;
+        priceOnly.innerHTML = `${cc.toFixed(2)}€`;
 
         let priceTotalByItems = document.getElementById(`price-${e.id}`);
-        let d = a * quant.value;
-
+        let d = aa * quant.value;
         priceTotalByItems.innerHTML = `${d.toFixed(2)}€`;
     }
 
@@ -663,23 +661,9 @@ function resetPriceQuantity(e) {
 
     shippingCost();
 
-    let f;
-    if (priceWithShip.innerHTML.charAt(priceWithShip.innerHTML.length - 1) == "€") {
-        f = parseFloat(priceOnly.innerHTML.slice(0, -1)) + parseFloat(priceShipping.innerHTML.slice(0, -1));
-        priceWithShip.innerHTML = `${f.toFixed(2)}€`;
-    }
+    priceTaxesCalcul(e);
 
-    let g;
-    if (priceTaxes.innerHTML.charAt(priceTaxes.innerHTML.length - 1) == "€") {
-        g = f * 1.2;
-        let h = g - f;
-        priceTaxes.innerHTML = `${h.toFixed(2)}€`;
-    }
-
-    if (priceTotal.innerHTML.charAt(priceTotal.innerHTML.length - 1) == "€") {
-        let j = priceWithShip + priceTaxes;
-        priceTotal.innerHTML = `${g.toFixed(2)}€`;
-    }
+    priceWithShipCalcul();
 
     quantityUpdate();
 }

@@ -1,0 +1,8 @@
+fixe de l'algo accueil avec génaration aléatoire fonctionnel et sans duplicata
+fixe du footer qui n'etait pas fixé en bas dans le panier sur grand écran
+fixe de la date de livraison (apparait seulement quand objet dans le panier maintenant)
+ajout de "TTC" sur le prix des objets
+changement ordre les montant dans la facturation pour plus de clarté
+ajout de "HT" sur le montant dans la facturation
+changement algo calcul HT
+ajout de la "TVC" taxe sur la valeur en cookie 
